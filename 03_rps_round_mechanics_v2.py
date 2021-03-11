@@ -51,7 +51,7 @@ while end_game == "no":
     if choose == "xxx":
         break
 
-    elif rounds_played == rounds - 1:
+    if rounds_played == rounds - 1:
         end_game = "yes"
 
     # rest of loop / game
