@@ -76,6 +76,7 @@ end_game = "no"
 while end_game == "no":
 
     # rounds heading
+    # Checks if Its continuous mode or rounds mode
     print()
     if rounds == "":
         heading = "Continuous Mode:" \
@@ -83,6 +84,9 @@ while end_game == "no":
 
     else:
         heading = "Round {} of {}".format(rounds_played + 1, rounds)
+        # End game when number of rounds finished
+        if rounds_played == rounds - 1:
+            end_game = "yes"
 
     print(heading)
 
@@ -101,8 +105,6 @@ while end_game == "no":
     if choose == "xxx":
         break
 
-    if rounds_played == rounds - 1:
-        end_game = "yes"
 
     # rest of loop / game
     print("You choose {}".format(choose))
