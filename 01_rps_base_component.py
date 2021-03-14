@@ -98,8 +98,12 @@ while end_game == "no":
                    "Paper or Scissors (or 'xxx' to quit)"
 
     # Ask user for rock paper scissors
-    choose = choice = choice_checker(choose_instruction, rps_list,
+    choose = choice_checker(choose_instruction, rps_list,
                                      choose_error)
+
+    # Computer choice
+    comp_choice = random.choice(rps_list[:-1])
+    print("Computer Choice: ", comp_choice)
 
     # end game if exit code is typed or rounds are finished
     if choose == "xxx":
