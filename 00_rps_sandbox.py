@@ -1,3 +1,5 @@
+import random
+
 # Functions
 def choice_checker(question):
 
@@ -12,11 +14,11 @@ def choice_checker(question):
 
         # if response is too high
         if response =="r" or response == "rock":
-            return response
+            return "rock"
         elif response =="p" or response == "paper":
-            return response
+            return "paper"
         elif response =="s" or response == "scissors":
-            return response
+            return "scissors"
 
         # checks exit code
         elif response == "xxx":
@@ -28,7 +30,25 @@ def choice_checker(question):
 
 
 # main routine
-rps = choice_checker("Rock Paper Scissors: ")
+options = ["rock", "paper", "scissors"]
 
-print
-print("You choose {}".format(rps))
+valid = False
+while not valid:
+    user = choice_checker("Rock Paper Scissors: ")
+    comp = random.choice(options)
+
+    if user == comp:
+        result = "tie"
+    elif user == "paper" and comp == "rock":
+        result = "you win"
+    elif user == "rock" and comp == "scissors":
+        result = "you win"
+    elif user == "scissor" and comp == "paper":
+        result = "you win"
+    else:
+        result = "you lose"
+
+
+    print("{} vs {} - {}".format(user, comp, result))
+
+

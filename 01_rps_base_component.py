@@ -103,7 +103,19 @@ while end_game == "no":
 
     # Computer choice
     comp_choice = random.choice(rps_list[:-1])
-    print("Computer Choice: ", comp_choice)
+
+    # Compare choices
+
+    if choose == comp_choice:
+        result = "Tie"
+    elif choose == "paper" and comp_choice == "rock":
+        result = "You Win"
+    elif choose == "rock" and comp_choice == "scissors":
+        result = "You Win"
+    elif choose == "scissor" and comp_choice == "paper":
+        result = "You Win"
+    else:
+        result = "You Lose"
 
     # end game if exit code is typed or rounds are finished
     if choose == "xxx":
@@ -111,7 +123,9 @@ while end_game == "no":
 
 
     # rest of loop / game
-    print("You choose {}".format(choose))
+    print()
+    print("You chose {}, Comp chose {}:".format(choose, comp_choice))
+    print("Result: {} ".format(result))
 
     rounds_played += 1
 print()
