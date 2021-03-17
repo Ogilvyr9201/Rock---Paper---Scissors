@@ -1,54 +1,23 @@
-import random
+rps_list = ["rock", "scissors", "paper"]
 
-# Functions
-def choice_checker(question):
+user_index = 1
+comp_index = 0
 
-    error = "Please Choose from Rock / Paper / Scissors " \
-            "(or 'xxx' to quit)"
 
-    valid = False
-    while not valid:
+user_choice = rps_list[user_index]
+comp_choice = rps_list[comp_index]
 
-        # ask user for choice (.lower choice)
-        response = input(question).lower()
 
-        # if response is too high
-        if response =="r" or response == "rock":
-            return "rock"
-        elif response =="p" or response == "paper":
-            return "paper"
-        elif response =="s" or response == "scissors":
-            return "scissors"
+print(user_choice)
+print(comp_choice)
 
-        # checks exit code
-        elif response == "xxx":
-            return response
-
-        else:
-            print(error)
+if comp_index == user_index:
+    result = "tie"
+elif comp_index == user_index - 2 or user_index + 1:
+    result = "win"
+elif comp_index == user_index + 2 or user_index - 1:
+    result = "lose"
 
 
 
-# main routine
-options = ["rock", "paper", "scissors"]
-
-valid = False
-while not valid:
-    user = choice_checker("Rock Paper Scissors: ")
-    comp = random.choice(options)
-
-    if user == comp:
-        result = "tie"
-    elif user == "paper" and comp == "rock":
-        result = "you win"
-    elif user == "rock" and comp == "scissors":
-        result = "you win"
-    elif user == "scissor" and comp == "paper":
-        result = "you win"
-    else:
-        result = "you lose"
-
-
-    print("{} vs {} - {}".format(user, comp, result))
-
-
+print(result)

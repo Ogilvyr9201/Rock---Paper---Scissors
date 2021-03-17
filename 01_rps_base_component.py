@@ -135,4 +135,3 @@ print("Thank you for playing")
 # Ask user if they want to see there game history
 # If 'yes' show game history
 
-
