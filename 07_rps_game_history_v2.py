@@ -29,3 +29,14 @@ for game in game_summary:
     print(game)
 
 print()
+
+# Displays game stats with % values to the nearest whole number
+print("**** Game Statistics ****")
+print("Win: {}, ({:.0f}%)\n"
+      "Loss: {}, ({:.0f}%)\n"
+      "Tie: {}, ({:.0f}%)".format(rounds_won,
+                                  percent_win,
+                                  rounds_lost,
+                                  percent_lose,
+                                  rounds_drawn,
+                                  percent_tie))
