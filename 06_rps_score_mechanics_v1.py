@@ -28,7 +28,7 @@ rounds_won = rounds_played - rounds_lost - rounds_drawn
 # End game statements
 print()
 print("***** End Game Summary *****")
-print("won: {} \t|\t Lost: {} \t|\t Draw: "
+print("Won: {} \t|\t Lost: {} \t|\t Draw: "
       "{}".format(rounds_won, rounds_lost, rounds_drawn))
 print()
 print("Thanks for playing")
