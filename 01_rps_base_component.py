@@ -3,6 +3,7 @@ import random
 # Functions
 
 
+# Checks rounds or infinite mode
 def check_rounds():
     while True:
         response = input("How many rounds: ")
@@ -28,10 +29,10 @@ def check_rounds():
                 print()
                 continue
 
-
         return response
 
 
+# Checks either Rock paper or scissors
 def choice_checker(question, valid_list, error):
 
         valid = False
@@ -53,6 +54,34 @@ def choice_checker(question, valid_list, error):
             print()
 
 
+# Checks for yes or no response
+def yes_no(question):
+    valid = False
+    while not valid:
+        response = input(question).lower()
+
+        if response == "yes" or response == "y":
+            response = "yes"
+            return response
+
+        elif response == "no" or response == "n":
+            response = "no"
+            return response
+
+        else:
+            print("<error> Please say yes or no")
+            print()
+
+
+# Instructions
+def instructions():
+    print("**** How to Play ****")
+    print()
+    print("The rules go here")
+    print()
+    return ""
+
+
 # Main Routines
 
 
@@ -62,9 +91,12 @@ rps_list = ["rock", "paper", "scissors", "xxx"]
 game_summary = []
 
 
-# ask user if they have played before.
-# If 'no' show instructions
+# Ask user if they have played before.
+played_before = yes_no("Have you played this game before? ")
 
+# If 'no' show instructions
+if played_before == "no":
+    instructions()
 
 # Ask user for # of rounds, <enter> for infinite mode
 
@@ -101,13 +133,12 @@ while end_game == "no":
     choose_error = "Please choose from Rock, " \
                    "Paper or Scissors (or 'xxx' to quit)"
 
-
     # Computer choice
     comp_choice = random.choice(rps_list[:-1])
 
     # Ask user for rock paper scissors
     choose = choice_checker(choose_instruction, rps_list,
-                                     choose_error)
+                            choose_error)
 
     # end game if exit code is typed or rounds are finished
     if choose == "xxx":
@@ -127,6 +158,7 @@ while end_game == "no":
     else:
         result = "Lost"
         rounds_lost += 1
+
     # Add result to list
     game_summary.append(result)
 
@@ -144,7 +176,6 @@ while end_game == "no":
     print(feedback)
 
     rounds_played += 1
-
 
     # Ask user if they want to see there game history
     # If 'yes' show game history
@@ -170,9 +201,5 @@ print()
 print("**** Game Statistics ****")
 print("Win: {}, ({:.0f}%)\n"
       "Loss: {}, ({:.0f}%)\n"
-      "Tie: {}, ({:.0f}%)".format(rounds_won,
-                                  percent_win,
-                                  rounds_lost,
-                                  percent_lose,
-                                  rounds_drawn,
-                                  percent_tie))
+      "Tie: {}, ({:.0f}%)".format(rounds_won, percent_win, rounds_lost,
+                                  percent_lose, rounds_drawn, percent_tie))
