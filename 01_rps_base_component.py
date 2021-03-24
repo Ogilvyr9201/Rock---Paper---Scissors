@@ -12,7 +12,6 @@ def statement_generator(statement, side_decoration, top_bottom_decoration):
 
     top_bottom = top_bottom_decoration * len(statement)
 
-
     print(top_bottom)
     print(statement)
     print(top_bottom)
@@ -36,7 +35,7 @@ def check_rounds():
 
                 # If response is to low, go back to
                 # start of loop
-                if response < 1 :
+                if response < 1:
                     print(round_error)
                     print()
                     continue
@@ -146,6 +145,9 @@ rounds_played = 0
 rounds_lost = 0
 rounds_drawn = 0
 
+# If user doesnt play game
+result = "Quiter"
+
 rounds = check_rounds()
 
 end_game = "no"
@@ -202,7 +204,6 @@ while end_game == "no":
 
     # Add result to list
     game_summary.append(result)
-    round_summary.append(rounds_played)
 
     # Feedback
     if result == "tie":
@@ -223,26 +224,36 @@ while end_game == "no":
     # Quick calculations (stats)
     rounds_won = rounds_played - rounds_lost - rounds_drawn
 
-# **** Calculate Game Stats ****
-percent_win = rounds_won / rounds_played * 100
-percent_lose = rounds_lost / rounds_played * 100
-percent_tie = rounds_drawn / rounds_played * 100
+# If quit on first round
+if result == "Quiter":
+    print()
+    statement_generator("lol didn't want to play :D", "!", "L")
 
-# Displays game stats with % values to the nearest whole number
-print()
-print("**** Game Statistics ****")
-print("Win: {}, ({:.0f}%)\n"
-      "Loss: {}, ({:.0f}%)\n"
-      "Tie: {}, ({:.0f}%)".format(rounds_won, percent_win, rounds_lost,
-                                  percent_lose, rounds_drawn, percent_tie))
-print()
+else:
+    # **** Calculate Game Stats ****
+    percent_win = rounds_won / rounds_played * 100
+    percent_lose = rounds_lost / rounds_played * 100
+    percent_tie = rounds_drawn / rounds_played * 100
 
-# Ask user if they want to see there game history
-# If 'yes' show game history
-show_history = yes_no("Do you want to see your game history? ")
-print()
-print("**** Game History ****")
-for item in game_summary:
-    print(item)
+    # Displays game stats with % values to the nearest whole number
+    print()
+    statement_generator("Game Statistics", "*", "-")
+    print("Win: {}, ({:.0f}%)\n"
+          "Loss: {}, ({:.0f}%)\n"
+          "Tie: {}, ({:.0f}%)".format(rounds_won, percent_win, rounds_lost,
+                                      percent_lose, rounds_drawn, percent_tie))
+    print()
 
-print()
+    # Ask user if they want to see there game history
+    # If 'yes' show game history
+    show_history = yes_no("Do you want to see your game history? ")
+    print()
+    if show_history == "yes":
+        statement_generator("Game History", "*", "-")
+        for item in game_summary:
+            print("*", item)
+
+        print()
+        statement_generator("Thanks for playing :)", "!", "=")
+    else:
+        statement_generator("Thanks for playing :)", "!", "=")
