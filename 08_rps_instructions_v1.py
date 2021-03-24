@@ -1,3 +1,4 @@
+# Taken from Lucky Unicorn Game
 def yes_no(question):
     valid = False
     while not valid:
