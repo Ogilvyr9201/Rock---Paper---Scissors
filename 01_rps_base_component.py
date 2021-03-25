@@ -146,7 +146,7 @@ rounds_lost = 0
 rounds_drawn = 0
 
 # If user doesnt play game
-result = "Quiter"
+result = "Quitter"
 
 rounds = check_rounds()
 
@@ -192,6 +192,7 @@ while end_game == "no":
     if choose == comp_choice:
         result = "Tie"
         rounds_drawn += 1
+        top_dec = "-"
     elif choose == "paper" and comp_choice == "rock":
         result = "Won"
     elif choose == "rock" and comp_choice == "scissors":
@@ -201,9 +202,13 @@ while end_game == "no":
     else:
         result = "Lost"
         rounds_lost += 1
+        top_dec = "v"
+
+    if result == "Won":
+        top_dec = "*"
 
     # Add result to list
-    game_summary.append(result)
+    game_summary.append("Round #{}: {}".format(rounds_played + 1, result))
 
     # Feedback
     if result == "tie":
@@ -216,7 +221,7 @@ while end_game == "no":
     print("You chose | {} |".format(choose))
     print("Comp chose | {} |".format(comp_choice))
     print()
-    statement_generator(feedback, "!", "-")
+    statement_generator(feedback, "!", top_dec)
 
     rounds_played += 1
 
@@ -225,7 +230,7 @@ while end_game == "no":
     rounds_won = rounds_played - rounds_lost - rounds_drawn
 
 # If quit on first round
-if result == "Quiter":
+if result == "Quitter":
     print()
     statement_generator("lol didn't want to play :D", "!", "L")
 
@@ -251,7 +256,7 @@ else:
     if show_history == "yes":
         statement_generator("Game History", "*", "-")
         for item in game_summary:
-            print("*", item)
+            print(item)
 
         print()
         statement_generator("Thanks for playing :)", "!", "=")
